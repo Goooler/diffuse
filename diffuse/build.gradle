@@ -14,9 +14,8 @@ dependencies {
 
   r8 libs.r8
 
-  testImplementation libs.junit.api
-  testRuntimeOnly libs.junit.engine
-  testImplementation libs.assertJ
+  testImplementation libs.junit
+  testImplementation libs.truth
 }
 
 def fatJarProvider = tasks.register('fatJar', Jar) { task ->
@@ -50,12 +49,11 @@ def fatJarProvider = tasks.register('fatJar', Jar) { task ->
     task.exclude 'NOTICE'
     task.exclude 'r8-version.properties'
     task.exclude 'migrateToAndroidx/*'
-    task.exclude 'api_database/*'
   }
 }
 
 def r8File = new File("$buildDir/libs/$archivesBaseName-$version-r8.jar")
-def rulesFile = project.file("src/main/rules.pro")
+def rulesFile = project.file("src/main/rules.txt")
 def r8JarProvider = tasks.register('r8Jar', JavaExec) { task ->
   task.javaLauncher.set(javaToolchains.launcherFor { spec ->
     spec.languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.majorVersion))

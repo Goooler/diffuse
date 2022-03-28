@@ -9,7 +9,8 @@ dalvikdx = "11.0.0_r3"
 apkparser = "30.2.2"
 apksign = "7.2.2"
 clikt = "3.5.0"
-junit = "5.9.0"
+junit = "4.13.2"
+truth = "1.1.3"
 okio = "3.2.0"
 byteunits = "0.9.1"
 asm = "9.3"
@@ -28,9 +29,8 @@ bundleTool = { module = "com.android.tools.build:bundletool", version.ref = "bun
 aapt2Proto = { module = "com.android.tools.build:aapt2-proto", version.ref = "aapt2Proto" }
 protobufJava = { module = "com.google.protobuf:protobuf-java", version.ref = "protobufJava" }
 clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
-junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
-junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
-assertJ = { module = "org.assertj:assertj-core", version.ref = "assertJ" }
+junit = { module = "junit:junit", version.ref = "junit" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 byteunits = { module = "com.jakewharton.byteunits:byteunits", version.ref = "byteunits" }
 asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
@@ -42,3 +42,4 @@ r8 = { module = "com.android.tools:r8", version.ref = "r8" }
 jmailen-kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 kotlin-dokka = { id = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+vanniktech-maven-publish = "com.vanniktech.maven.publish:0.22.0"

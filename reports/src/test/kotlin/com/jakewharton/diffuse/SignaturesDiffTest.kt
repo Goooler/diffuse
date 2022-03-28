@@ -1,11 +1,11 @@
 package com.jakewharton.diffuse
 
+import com.google.common.truth.Truth.assertThat
 import com.jakewharton.diffuse.diff.SignaturesDiff
 import com.jakewharton.diffuse.diff.toDetailReport
 import com.jakewharton.diffuse.format.Signatures
 import okio.ByteString.Companion.encodeUtf8
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 class SignaturesDiffTest {
   private val signatureEmpty = Signatures(emptyList(), emptyList(), emptyList(), emptyList())

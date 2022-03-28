@@ -7,7 +7,6 @@ dependencies {
   implementation libs.picnic
   implementation libs.diffUtils
 
-  testImplementation libs.junit.api
-  testRuntimeOnly libs.junit.engine
-  testImplementation libs.assertJ
+  testImplementation libs.junit
+  testImplementation libs.truth
 }
