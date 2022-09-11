@@ -1,20 +1,22 @@
 plugins {
-  alias(libs.plugins.jmailen.kotlinter) apply(false)
-  alias(libs.plugins.kotlin.jvm) apply(false)
+  alias(libs.plugins.kotlin.jvm) apply false
+  alias(libs.plugins.kotlinter) apply false
 }
 
 subprojects {
-  plugins.withId(libs.plugins.kotlin.jvm.get().pluginId) {
-    pluginManager.apply(libs.plugins.jmailen.kotlinter.get().pluginId)
-  }
+  group = GROUP
+  version = VERSION_NAME
 
-  plugins.withId("java") {
-    tasks.withType(JavaCompile).configureEach {
-      options.release.set(Integer.valueOf(JavaVersion.VERSION_1_8.majorVersion))
-    }
-    java {
-      toolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.majorVersion))
+  apply plugin: libs.plugins.kotlinter.get().pluginId
+
+  plugins.withId('org.jetbrains.kotlin.jvm') {
+    compileKotlin {
+      kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+        freeCompilerArgs = [
+            "-progressive",
+            '-opt-in=kotlin.contracts.ExperimentalContracts'
+        ]
       }
     }
   }
@@ -32,18 +34,6 @@ subprojects {
       if (requested.group == "com.google.guava" && requested.name == "guava") {
         useVersion(libs.versions.guava.get())
         because("we need to keep depenedencies in sync with bundletool")
-      }
-    }
-  }
-
-  plugins.withId('org.jetbrains.kotlin.jvm') {
-    compileKotlin {
-      kotlinOptions {
-        jvmTarget = "1.8"
-        freeCompilerArgs = [
-            "-progressive",
-            '-opt-in=kotlin.contracts.ExperimentalContracts'
-        ]
       }
     }
   }
