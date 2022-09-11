@@ -1,6 +1,8 @@
 plugins {
   alias(libs.plugins.kotlin.jvm) apply false
   alias(libs.plugins.kotlinter) apply false
+  alias(libs.plugins.dokka) apply false
+  alias(libs.plugins.mavenPublish) apply false
 }
 
 subprojects {
@@ -25,15 +27,15 @@ subprojects {
     resolutionStrategy.eachDependency {
       if (requested.group == "com.android.tools.build" && requested.name == "aapt2-proto") {
         useVersion(libs.versions.aapt2Proto.get())
-        because("we need to keep depenedencies in sync with bundletool")
+        because("We need to keep depenedencies in sync with bundletool")
       }
       if (requested.group == "com.google.protobuf" && requested.name == "protobuf-java") {
         useVersion(libs.versions.protobufJava.get())
-        because("we need to keep depenedencies in sync with bundletool")
+        because("We need to keep depenedencies in sync with bundletool")
       }
       if (requested.group == "com.google.guava" && requested.name == "guava") {
         useVersion(libs.versions.guava.get())
-        because("we need to keep depenedencies in sync with bundletool")
+        because("We need to keep depenedencies in sync with bundletool")
       }
     }
   }
