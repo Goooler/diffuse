@@ -6,11 +6,7 @@ import java.io.FileNotFoundException
 import java.nio.file.FileSystem
 import java.nio.file.Path
 import java.util.zip.ZipEntry
-import java.util.zip.ZipFile
 import java.util.zip.ZipInputStream
-import kotlin.io.path.exists
-import kotlin.io.path.inputStream
-import kotlin.io.path.name
 import okio.ByteString
 import okio.utf8Size
 
@@ -66,13 +62,9 @@ interface Zip : Closeable {
 
 private fun <T : Zip.Entry> ZipInputStream.mapEntries(
   entryFactory: (name: String, size: Size, compressedSize: Size, zipSize: Size, isCompressed: Boolean) -> T,
-) = entries().map { it.toZipEntry(entryFactory) }.toList()
-
-private fun <T : Zip.Entry> ZipFile.mapEntries(
-  entryFactory: (name: String, size: Size, compressedSize: Size, zipSize: Size, isCompressed: Boolean) -> T,
-) = entries().asSequence()
-  .map { it.toZipEntry(entryFactory) }
-  .toList()
+): List<T> {
+  return entries().map { it.toZipEntry(entryFactory) }.toList()
+}
 
 private fun <T : Zip.Entry> ZipEntry.toZipEntry(
   entryFactory: (name: String, size: Size, compressedSize: Size, zipSize: Size, isCompressed: Boolean) -> T,
@@ -96,12 +88,8 @@ private fun <T : Zip.Entry> ZipEntry.toZipEntry(
 internal fun Path.toZip(): Zip {
   val fs = asZipFileSystem()
   val root = fs.rootDirectories.single()!!
-  val entries = try {
-    ZipFile(toFile()).mapEntries { name, size, compressedSize, zipSize, isCompressed ->
-      PathZip.Entry(root, name, size, compressedSize, zipSize, isCompressed)
-    }
-  } catch (ex: UnsupportedOperationException) {
-    inputStream().asZip().mapEntries { name, size, compressedSize, zipSize, isCompressed ->
+  val entries = inputStream().use {
+    it.asZip().mapEntries { name, size, compressedSize, zipSize, isCompressed ->
       PathZip.Entry(root, name, size, compressedSize, zipSize, isCompressed)
     }
   }
@@ -122,7 +110,7 @@ internal class PathZip(
   ) : Zip.Entry {
     override fun asInput(): Input {
       val child = root.resolve(path)
-      if (!child.exists()) {
+      if (!child.exists) {
         throw FileNotFoundException("No entry: $path")
       }
       return child.asInput()
