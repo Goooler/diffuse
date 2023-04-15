@@ -1,44 +1,28 @@
 [versions]
-bundletool = "1.14.1"
 # Keep this values in sync with bundletool"s dependencies.
-aapt2Proto = "7.3.0-alpha07-8248216"
-protobufJava = "3.19.2"
-guava = "31.0.1-jre"
-
-dalvikdx = "11.0.0_r3"
-apkparser = "31.0.0"
-apksign = "8.0.0"
-clikt = "3.5.2"
-junit = "5.9.2"
-okio = "3.3.0"
-byteunits = "0.9.1"
-asm = "9.5"
-javaDiffUtils = "4.12"
-picnic = "0.6.0"
-kotlin = "1.8.20"
-ktlint-gradle-plugin = "0.2.2"
-r8 = "8.0.40"
-assertJ = "3.24.2"
+aapt2Proto = "8.0.0-9289358"
+protobufJava = "3.22.3"
+guava = "30.1-jre"
 
 [libraries]
-dalvikDx = { module = "com.jakewharton.android.repackaged:dalvik-dx", version.ref = "dalvikdx" }
-binaryResources = { module = "com.android.tools.apkparser:binary-resources", version.ref = "apkparser" }
-apkSigner = { module = "com.android.tools.build:apksig", version.ref = "apksign" }
-bundleTool = { module = "com.android.tools.build:bundletool", version.ref = "bundletool" }
+dalvikDx = "com.jakewharton.android.repackaged:dalvik-dx:11.0.0_r3"
+binaryResources = "com.android.tools.apkparser:binary-resources:31.0.0"
+apkSigner = "com.android.tools.build:apksig:8.0.0"
+bundleTool = "com.android.tools.build:bundletool:1.14.1"
 aapt2Proto = { module = "com.android.tools.build:aapt2-proto", version.ref = "aapt2Proto" }
 protobufJava = { module = "com.google.protobuf:protobuf-java", version.ref = "protobufJava" }
-clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
-junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
-junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
-assertJ = { module = "org.assertj:assertj-core", version.ref = "assertJ" }
-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
-byteunits = { module = "com.jakewharton.byteunits:byteunits", version.ref = "byteunits" }
-asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
-diffUtils = { module = "io.github.java-diff-utils:java-diff-utils", version.ref = "javaDiffUtils" }
-picnic = { module = "com.jakewharton.picnic:picnic", version.ref = "picnic" }
-r8 = { module = "com.android.tools:r8", version.ref = "r8" }
+clikt = "com.github.ajalt.clikt:clikt:3.5.2"
+junit = "junit:junit:4.13.2"
+truth = "com.google.truth:truth:1.1.3"
+okio = "com.squareup.okio:okio:3.3.0"
+byteunits = "com.jakewharton.byteunits:byteunits:0.9.1"
+asm = "org.ow2.asm:asm:9.5"
+diffUtils = "io.github.java-diff-utils:java-diff-utils:4.12"
+picnic = "com.jakewharton.picnic:picnic:0.6.0"
+r8 = "com.android.tools:r8:3.3.75"
 
 [plugins]
-usefulness-ktlint-gradle = { id = "io.github.usefulness.ktlint-gradle-plugin", version.ref = "ktlint-gradle-plugin" }
-kotlin-dokka = { id = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+dokka = "org.jetbrains.dokka:1.8.10"
+kotlin-jvm = "org.jetbrains.kotlin.jvm:1.8.20"
+kotlinter = "org.jmailen.kotlinter:3.14.0"
+mavenPublish = "com.vanniktech.maven.publish:0.25.1"

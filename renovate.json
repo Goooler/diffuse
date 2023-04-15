@@ -1,10 +1,6 @@
 {
-  "includeForks": true,
-  "assignees": [
-    "mateuszkwiecinski"
-  ],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
-  ],
-  "ignoreDeps": ["com.google.protobuf:protobuf-java", "com.android.tools.build:aapt2-proto"]
+  ]
 }

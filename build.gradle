@@ -1,50 +1,41 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-  alias(libs.plugins.usefulness.ktlint.gradle) apply(false)
-  alias(libs.plugins.kotlin.jvm) apply(false)
+  alias(libs.plugins.kotlin.jvm) apply false
+  alias(libs.plugins.kotlinter) apply false
+  alias(libs.plugins.dokka) apply false
+  alias(libs.plugins.mavenPublish) apply false
 }
 
 subprojects {
-  pluginManager.withPlugin(libs.plugins.kotlin.jvm.get().pluginId) {
-    pluginManager.apply(libs.plugins.usefulness.ktlint.gradle.get().pluginId)
+  group = GROUP
+  version = VERSION_NAME
 
-    kotlin {
-      jvmToolchain(17)
-    }
-    tasks.withType(KotlinCompile).configureEach {
+  apply plugin: libs.plugins.kotlinter.get().pluginId
+
+  plugins.withId('org.jetbrains.kotlin.jvm') {
+    compileKotlin {
       kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8
         freeCompilerArgs = [
-          "-progressive",
-          '-opt-in=kotlin.contracts.ExperimentalContracts',
+            "-progressive",
+            '-opt-in=kotlin.contracts.ExperimentalContracts'
         ]
       }
     }
-  }
-
-  pluginManager.withPlugin("java") {
-    tasks.withType(JavaCompile).configureEach {
-      options.release.set(Integer.valueOf(JavaVersion.VERSION_1_8.majorVersion))
-    }
-  }
-  tasks.withType(Test).configureEach {
-    useJUnitPlatform()
   }
 
   configurations.configureEach {
     resolutionStrategy.eachDependency {
       if (requested.group == "com.android.tools.build" && requested.name == "aapt2-proto") {
         useVersion(libs.versions.aapt2Proto.get())
-        because("we need to keep depenedencies in sync with bundletool")
+        because("We need to keep depenedencies in sync with bundletool")
       }
       if (requested.group == "com.google.protobuf" && requested.name == "protobuf-java") {
         useVersion(libs.versions.protobufJava.get())
-        because("we need to keep depenedencies in sync with bundletool")
+        because("We need to keep depenedencies in sync with bundletool")
       }
       if (requested.group == "com.google.guava" && requested.name == "guava") {
         useVersion(libs.versions.guava.get())
-        because("we need to keep depenedencies in sync with bundletool")
+        because("We need to keep depenedencies in sync with bundletool")
       }
     }
   }
