@@ -19,7 +19,7 @@ subprojects {
 
   plugins.withId('org.jetbrains.kotlin.jvm') {
     compileKotlin {
-      kotlinOptions {
+      compilerOptions {
         freeCompilerArgs = [
             "-progressive",
             '-opt-in=kotlin.contracts.ExperimentalContracts'
