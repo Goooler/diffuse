@@ -5,6 +5,7 @@
 
 **Added**
 - Add `--summary-only` flag.
+- Support diffing uses-permission counts.
 
 **Fixed**
 - Significantly improve `.jar` diff performance.
