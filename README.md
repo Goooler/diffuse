@@ -1,5 +1,4 @@
-Diffuse
-=======
+# Diffuse
 
 Diffuse is a tool for diffing APKs, AABs, AARs, and JARs in a way that aims to provide both a
 high-level view of what changes along with important detailed output.
@@ -117,8 +116,7 @@ METHODS:
 ```
 
 
-Usage
------
+## Usage
 
 `diffuse` has multiple subcommands. The primary one is `diff` which takes two binaries and displays
 a summary and detailed listing of changes between them.
@@ -173,8 +171,20 @@ Download ZIP from
 [latest release](https://github.com/JakeWharton/diffuse/releases/latest).
 
 
-License
--------
+## More info
+
+### Presentations
+
+* <a href="https://jakewharton.com/diffusing-changes-in-your-apk/">Diffusing Change in Your APK – Droidcon Toronto<br>
+![](.github/talk.jpg)
+</a>
+
+### Blog posts
+
+* [Calculating the true impact of zip file entries](https://jakewharton.com/calculating-zip-file-entry-true-impact/)
+
+
+## License
 
     Copyright 2015 Jake Wharton
 
