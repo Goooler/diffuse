@@ -5,8 +5,6 @@ apply plugin: 'org.jetbrains.dokka'
 dependencies {
   api projects.io
 
-  implementation libs.asm
-
   implementation libs.apkSigner
   implementation libs.binaryResources
   implementation libs.dalvikDx

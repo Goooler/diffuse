@@ -6,6 +6,10 @@
 **Added**
 - Add `--summary-only` flag.
 
+**Changed**
+- Bump minimum Java requirement to 24 for Class-File API support.
+- Migrate from ASM to Class-File API.
+
 **Fixed**
 - Significantly improve `.jar` diff performance.
 
