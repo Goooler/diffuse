@@ -129,7 +129,7 @@ private class ReferencedMembersVisitor : MethodVisitor(Opcodes.ASM9) {
   }
 }
 
-internal fun parseMethod(owner: TypeDescriptor, name: String, descriptor: String): Method {
+private fun parseMethod(owner: TypeDescriptor, name: String, descriptor: String): Method {
   val parameterTypes = mutableListOf<TypeDescriptor>()
   var i = 1
   while (true) {
