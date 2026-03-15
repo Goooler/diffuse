@@ -4,9 +4,13 @@ import com.jakewharton.diffuse.diffuseTable
 import com.jakewharton.diffuse.format.Aab
 import com.jakewharton.diffuse.format.ArchiveFile
 import com.jakewharton.diffuse.info.toSummaryTable
+import com.jakewharton.diffuse.io.SizeFormat
 import com.jakewharton.diffuse.report.Report
 
-internal class AabInfoTextReport(private val aab: Aab) : Report {
+internal class AabInfoTextReport(
+  private val aab: Aab,
+  private val sizeFormat: SizeFormat = SizeFormat.Binary,
+) : Report {
   override fun write(appendable: Appendable) {
     appendable.apply {
       appendLine(aab.filename)
@@ -45,6 +49,7 @@ internal class AabInfoTextReport(private val aab: Aab) : Report {
         "AAB",
         ArchiveFile.Type.AAB_TYPES,
         skipIfEmptyTypes = setOf(ArchiveFile.Type.Native),
+        sizeFormat = sizeFormat,
       )
     )
     appendLine(module.dexes.toSummaryTable())

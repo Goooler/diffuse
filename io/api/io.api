@@ -62,12 +62,22 @@ public final class com/jakewharton/diffuse/io/Size : java/lang/Comparable {
 	public static final fun plus-2SwpbTA (JJ)J
 	public fun toString ()Ljava/lang/String;
 	public static fun toString-impl (J)Ljava/lang/String;
+	public static final fun toString-impl (JLcom/jakewharton/diffuse/io/SizeFormat;)Ljava/lang/String;
+	public static synthetic fun toString-impl$default (JLcom/jakewharton/diffuse/io/SizeFormat;ILjava/lang/Object;)Ljava/lang/String;
 	public static final fun unaryMinus-kab5oJg (J)J
 	public final synthetic fun unbox-impl ()J
 }
 
 public final class com/jakewharton/diffuse/io/Size$Companion {
 	public final fun getZERO-kab5oJg ()J
+}
+
+public final class com/jakewharton/diffuse/io/SizeFormat : java/lang/Enum {
+	public static final field Binary Lcom/jakewharton/diffuse/io/SizeFormat;
+	public static final field Decimal Lcom/jakewharton/diffuse/io/SizeFormat;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/jakewharton/diffuse/io/SizeFormat;
+	public static fun values ()[Lcom/jakewharton/diffuse/io/SizeFormat;
 }
 
 public final class com/jakewharton/diffuse/io/StringInput : com/jakewharton/diffuse/io/Input {

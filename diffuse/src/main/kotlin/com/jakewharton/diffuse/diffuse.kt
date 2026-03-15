@@ -41,6 +41,7 @@ import com.jakewharton.diffuse.info.DexInfo
 import com.jakewharton.diffuse.info.JarInfo
 import com.jakewharton.diffuse.io.Input
 import com.jakewharton.diffuse.io.Input.Companion.asInput
+import com.jakewharton.diffuse.io.SizeFormat
 import com.jakewharton.diffuse.report.Report
 import java.io.PrintStream
 import java.nio.file.FileSystem
@@ -134,9 +135,14 @@ private class OutputOptions(outputFs: FileSystem, private val output: PrintStrea
       )
       .flag()
 
+  private val sizeFormat by
+    option("--bytes", help = "Byte units to use in reports. Default is 'binary'.")
+      .choice("binary" to SizeFormat.Binary, "decimal" to SizeFormat.Decimal)
+      .default(SizeFormat.Binary)
+
   fun write(reportFactory: Report.Factory) {
-    val textReport by lazy(NONE) { reportFactory.toTextReport(summaryOnly).toString() }
-    val htmlReport by lazy(NONE) { reportFactory.toHtmlReport(summaryOnly).toString() }
+    val textReport by lazy(NONE) { reportFactory.toTextReport(summaryOnly, sizeFormat).toString() }
+    val htmlReport by lazy(NONE) { reportFactory.toHtmlReport(summaryOnly, sizeFormat).toString() }
 
     text?.writeText(textReport)
     html?.writeText(htmlReport)

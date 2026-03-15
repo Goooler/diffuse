@@ -2,6 +2,7 @@ package com.jakewharton.diffuse.diff
 
 import com.jakewharton.diffuse.format.ApiMapping
 import com.jakewharton.diffuse.format.Jar
+import com.jakewharton.diffuse.io.SizeFormat
 import com.jakewharton.diffuse.report.Report
 import com.jakewharton.diffuse.report.text.JarDiffTextReport
 
@@ -16,5 +17,6 @@ internal class JarDiff(
 
   val changed = jars.changed || archive.changed
 
-  override fun toTextReport(summaryOnly: Boolean): Report = JarDiffTextReport(this, summaryOnly)
+  override fun toTextReport(summaryOnly: Boolean, sizeFormat: SizeFormat): Report =
+    JarDiffTextReport(this, summaryOnly, sizeFormat)
 }

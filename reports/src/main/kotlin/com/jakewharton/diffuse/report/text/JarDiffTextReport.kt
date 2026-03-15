@@ -4,10 +4,14 @@ import com.jakewharton.diffuse.diff.JarDiff
 import com.jakewharton.diffuse.diff.toDetailReport
 import com.jakewharton.diffuse.diff.toSummaryTable
 import com.jakewharton.diffuse.format.ArchiveFile.Type
+import com.jakewharton.diffuse.io.SizeFormat
 import com.jakewharton.diffuse.report.Report
 
-internal class JarDiffTextReport(private val jarDiff: JarDiff, private val summaryOnly: Boolean) :
-  Report {
+internal class JarDiffTextReport(
+  private val jarDiff: JarDiff,
+  private val summaryOnly: Boolean,
+  private val sizeFormat: SizeFormat = SizeFormat.Binary,
+) : Report {
   override fun write(appendable: Appendable) {
     appendable.apply {
       append("OLD: ")
@@ -17,7 +21,7 @@ internal class JarDiffTextReport(private val jarDiff: JarDiff, private val summa
       appendLine(jarDiff.newJar.filename)
 
       appendLine()
-      appendLine(jarDiff.archive.toSummaryTable("JAR", Type.JAR_TYPES))
+      appendLine(jarDiff.archive.toSummaryTable("JAR", Type.JAR_TYPES, sizeFormat = sizeFormat))
       appendLine()
       appendLine(jarDiff.jars.toSummaryTable("CLASSES"))
 
@@ -27,7 +31,7 @@ internal class JarDiffTextReport(private val jarDiff: JarDiff, private val summa
         appendLine("=================")
         appendLine("====   JAR   ====")
         appendLine("=================")
-        appendLine(jarDiff.archive.toDetailReport())
+        appendLine(jarDiff.archive.toDetailReport(sizeFormat))
       }
       if (jarDiff.jars.changed) {
         appendLine()
