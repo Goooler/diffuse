@@ -136,7 +136,7 @@ private class OutputOptions(outputFs: FileSystem, private val output: PrintStrea
       .flag()
 
   private val sizeFormat by
-    option("--bytes", help = "Byte units to use in reports. Default is 'binary'.")
+    option("--byte-units", help = "Byte units to use in reports. Default is 'binary'.")
       .choice("binary" to SizeFormat.Binary, "decimal" to SizeFormat.Decimal)
       .default(SizeFormat.Binary)
 
