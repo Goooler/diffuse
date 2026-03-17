@@ -68,7 +68,9 @@ def addMultiReleaseSourceSet(int version) {
     task.group = LifecycleBasePlugin.VERIFICATION_GROUP
     task.description = "Runs test suite using Java ${version} toolchain."
     task.testClassesDirs = sourceSets.test.output.classesDirs
-    task.classpath = sourceSets.test.runtimeClasspath
+    def testCpWithoutMainOutput = sourceSets.test.runtimeClasspath - sourceSets.main.output
+    // Prefer MR classes on the classpath, so remove main output from the test runtime classpath.
+    task.classpath = files(tasks.named('jar', Jar).flatMap { it.archiveFile }) + testCpWithoutMainOutput
     task.javaLauncher = javaToolchains.launcherFor {
       languageVersion = JavaLanguageVersion.of(version)
       vendor = JvmVendorSpec.AZUL
