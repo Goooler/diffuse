@@ -14,7 +14,12 @@ internal fun Input.toClassImpl(): Class {
   val classModel = ClassFile.of().parse(toByteArray())
   val type = TypeDescriptor("L${classModel.thisClass().asInternalName()};")
   val (declaredMembers, referencedMembers) = classModel.parseMembers(type)
-  return Class(type, declaredMembers.sorted(), referencedMembers.sorted())
+  return Class(
+    descriptor = type,
+    bytecodeVersion = classModel.majorVersion(),
+    declaredMembers = declaredMembers.sorted(),
+    referencedMembers = referencedMembers.sorted(),
+  )
 }
 
 private fun ClassModel.parseMembers(type: TypeDescriptor): Pair<List<Member>, Set<Member>> {

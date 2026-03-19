@@ -42,10 +42,10 @@ internal fun Input.toClassImpl(): Class {
   reader.accept(declaredVisitor, 0)
 
   return Class(
-    type,
-    declaredVisitor.version,
-    declaredVisitor.members.sorted(),
-    referencedVisitor.members.sorted(),
+    descriptor = type,
+    bytecodeVersion = declaredVisitor.version,
+    declaredMembers = declaredVisitor.members.sorted(),
+    referencedMembers = referencedVisitor.members.sorted(),
   )
 }
 
