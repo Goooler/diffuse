@@ -23,7 +23,7 @@ subprojects {
   spotless {
     kotlin {
       ktfmt(libs.ktfmt.get().version).googleStyle()
-      target('**/*.kt')
+      target('src/**/*.kt')
     }
   }
 
@@ -35,6 +35,7 @@ subprojects {
         }
       }
       compilerOptions {
+        allWarningsAsErrors = true
         jvmTarget = JvmTarget.JVM_11
         freeCompilerArgs = [
             "-progressive",
@@ -47,22 +48,5 @@ subprojects {
 
   tasks.withType(JavaCompile).configureEach {
     options.release = 11
-  }
-
-  configurations.configureEach {
-    resolutionStrategy.eachDependency {
-      if (requested.group == "com.android.tools.build" && requested.name == "aapt2-proto") {
-        useVersion(libs.versions.aapt2Proto.get())
-        because("We need to keep depenedencies in sync with bundletool")
-      }
-      if (requested.group == "com.google.protobuf" && requested.name == "protobuf-java") {
-        useVersion(libs.versions.protobufJava.get())
-        because("We need to keep depenedencies in sync with bundletool")
-      }
-      if (requested.group == "com.google.guava" && requested.name == "guava") {
-        useVersion(libs.versions.guava.get())
-        because("We need to keep depenedencies in sync with bundletool")
-      }
-    }
   }
 }
