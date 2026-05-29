@@ -135,7 +135,8 @@ private class OutputOptions(outputFs: FileSystem, private val output: PrintStrea
       .flag()
 
   fun write(reportFactory: Report.Factory) {
-    val textReport by lazy(NONE) { reportFactory.toTextReport(summaryOnly).toString() }
+    val textReport by
+      lazy(NONE) { reportFactory.toTextReport(summaryOnly).toString().trimEnd('\r', '\n') }
     val htmlReport by lazy(NONE) { reportFactory.toHtmlReport(summaryOnly).toString() }
 
     text?.writeText(textReport)
