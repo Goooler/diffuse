@@ -142,7 +142,6 @@ public final class com/jakewharton/diffuse/format/ArchiveFile$Type$Companion {
 
 public final class com/jakewharton/diffuse/format/ArchiveFiles : java/util/Map, kotlin/jvm/internal/markers/KMappedMarker {
 	public static final field Companion Lcom/jakewharton/diffuse/format/ArchiveFiles$Companion;
-	public fun <init> (Ljava/util/Map;)V
 	public fun clear ()V
 	public synthetic fun compute (Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
 	public fun compute (Ljava/lang/String;Ljava/util/function/BiFunction;)Lcom/jakewharton/diffuse/format/ArchiveFile;
